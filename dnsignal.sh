@@ -16,7 +16,7 @@ while read DOMAIN
 		LC_ALL=C grep -e "$IP" "$DOMAIN".temp > "$IP".temp
 		LC_ALL=C cat "$IP".temp | wc -l >> spearman.temp
 		rm "$IP.temp"
-	done <indexer.ip
+	done <dnsignal.ip
 
 	paste spearman.temp spearman.control > data.csv
 	SPEARMAN=$(./spearman.r | sed 1d | cut -d ' ' -f4 | head -1)
@@ -48,8 +48,8 @@ while read DOMAIN
 	VOTES=$(grep -e "span itemprop=" wot.temp | grep votes | cut -d '>' -f2 | cut -d '<' -f1)
 	rm wot.temp
 					
-	USER_AGENT=$(shuf indexer.ua | head -1)
-	PROXY=$(shuf indexer.proxy | head -1)
+	USER_AGENT=$(shuf dnsignal.ua | head -1)
+	PROXY=$(shuf dnsignal.proxy | head -1)
 	sudo wget -O alexa.temp --user-agent="$USER_AGENT" http://www.alexa.com/siteinfo/"$DOMAIN" -q --proxy-user "username" --proxy-password "password" use_proxy=yes -e http_proxy="$PROXY" -T 15 --tries=3
 	BOUNCE=$(grep -e "%  " alexa.temp | colrm 10 | tr -d ":[[:blank:]]:" | sed "s/%//" | head -1)
 	SEARCH=$(grep -e "%  " alexa.temp | colrm 10 | tr -d ":[[:blank:]]:" | sed "s/%//" | tail -1)
@@ -68,6 +68,6 @@ while read DOMAIN
 	ENTROPY=$(echo $ENTROPY)
 	SPEARMAN=$(echo $SPEARMAN)
 				
-	echo -e "$DOMAIN,$SOV,$RANK,$IPS,$SPEARMAN,$TWSCORE,$TWENTROPY,$TWUNIQ,$TRUST,$ENTROPY,$QUALITY" | sed -e "s/,,/,na,/g" >> indexer.output
+	echo -e "$DOMAIN,$SOV,$RANK,$IPS,$SPEARMAN,$TWSCORE,$TWENTROPY,$TWUNIQ,$TRUST,$ENTROPY,$QUALITY" | sed -e "s/,,/,na,/g" >> dnsignal.output
 
-done <master.input
+done <dnsignal.input
