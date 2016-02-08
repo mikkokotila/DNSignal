@@ -21,7 +21,7 @@ while read DOMAIN
 	paste spearman.temp spearman.control > data.csv
 	SPEARMAN=$(./spearman.r | sed 1d | cut -d ' ' -f4 | head -1)
 	rm spearman.temp
-# 	rm data.csv						
+ 	rm data.csv						
 	rm "$DOMAIN".temp
 
 	wget -q -O entropy.temp $DOMAIN -T 15 --tries=3
