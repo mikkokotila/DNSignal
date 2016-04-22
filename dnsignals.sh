@@ -4,12 +4,12 @@
 
 user_agent()
 {
-	USER_AGENT=$(shuf signals.ua | head -1) 
+	USER_AGENT=$(shuf dnsignals.ua | head -1) 
 }
 
 proxy()
 {
-	PROXY=$(shuf signals.proxy | head -1)
+	PROXY=$(shuf dnsignals.proxy | head -1)
 }
 
 ## D A T A  C O L L E C T I O N (all are web scraper based)
