@@ -242,4 +242,4 @@ while read DOMAIN
 rm *.temp
 rm $DOMAIN
 
-done <master.input
+done <dnsignal.input
