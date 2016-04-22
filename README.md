@@ -1,8 +1,13 @@
 # DNSignal
 ### domain name signal taxonomy builder for domain based signal intelligence research
 
-The script requires access to Twitter API, in this case I've used T by sferik:
+## r e q u i r e m e n t s 
 
-https://github.com/sferik/t
+    sudo apt-get install num-utils
+    
+    cpan> install HTML::Strip
 
-You also need to have a file 
+# signals.ua (with a list of common user-agents)
+# signals.proxy (
+# master.input (with the domains to be scanned)
+
