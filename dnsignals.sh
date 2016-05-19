@@ -21,7 +21,7 @@ similarweb_data(){
 }
 
 alexa_data(){
-	sudo wget --user-agent="$USER_AGENT" http://www.alexa.com/siteinfo/"$DOMAIN" -q --proxy-user "2lk34jx0" --proxy-password "AXZmtolaxJcPnAZ5hkcLMfRzNTojs3YGehuOjsHjJz0=" use_proxy=yes -e http_proxy="$PROXY" -T 3 --tries=2
+	sudo wget --user-agent="$USER_AGENT" http://www.alexa.com/siteinfo/"$DOMAIN" -q --proxy-user "user" --proxy-password "password" use_proxy=yes -e http_proxy="$PROXY" -T 3 --tries=2
 }
 
 wot_data()
